@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
-
+@property (nonatomic,strong)IBOutlet UIView *btn1;
+@property (nonatomic,strong)IBOutlet UIView *btn2;
+@property (nonatomic,strong)IBOutlet UIView *btn3;
 
 @end
 
