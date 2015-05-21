@@ -8,6 +8,7 @@
 
 #import "DetailViewController.h"
 #import <AFHTTPRequestOperationManager.h>
+
 #include <ifaddrs.h>
 #include <arpa/inet.h>
 #import "AppDelegate.h"
@@ -30,6 +31,7 @@
     float latitude = delegate.locationManager.location.coordinate.latitude;
     float longitude = delegate.locationManager.location.coordinate.longitude;
     // Do any additional setup after loading the view.
+    [self getImage];
 }
 -(void)initElements{
     scroll=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,self.view.frame.size.height)];
@@ -126,41 +128,27 @@
     return address;
     
 }
-/*
+
 -(void)getImage{
-    NSData *imageToUpload = UIImageJPEGRepresentation(uploadedImgView.image, 1.0);//(uploadedImgView.image);
-    if (imageToUpload)
-    {
-        NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:keyParameter, @"keyName", nil];
+    
+    UIImage *image = [UIImage imageNamed:@"1.png"];//[info valueForKey:UIImagePickerControllerOriginalImage];
+    NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    self.params = @{@"name":@"anonimo", @"last_name":@"anonimo", @"content":@"texto", @"latitude":@10.343, @"longitude":@-34.324, @"phone":@9611510936 , @"ip":[self getIPAddress], @"is_active":@true  };
+    
+    
+    [manager.requestSerializer setAuthorizationHeaderFieldWithUsername:@"netoxico" password:@"123456"];
+    
+    [manager POST:@"http://dc.netoxico.com/api/complaints/" parameters:self.params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         
-        AFHTTPClient *client= [AFHTTPClient clientWithBaseURL:[NSURL URLWithString:@"http://------"]];
-        
-        NSMutableURLRequest *request = [client multipartFormRequestWithMethod:@"POST" path:@"API name as you have" parameters:parameters constructingBodyWithBlock: ^(id <AFMultipartFormData>formData) {
-            [formData appendPartWithFileData: imageToUpload name:@"image" fileName:@"temp.jpeg" mimeType:@"image/jpeg"];
-        }];
-        
-        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-        
-        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
-         {
-             NSDictionary *jsons = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:nil];
-             //NSLog(@"response: %@",jsons);
-             
-         }
-                                         failure:^(AFHTTPRequestOperation *operation, NSError *error)
-         {
-             if([operation.response statusCode] == 403)
-             {
-                 //NSLog(@"Upload Failed");
-                 return;
-             }
-             //NSLog(@"error: %@", [operation error]);
-             
-         }];
-        
-        [operation start];
+        [formData appendPartWithFormData:imageData name:@"image"];
     }
-}*/
+        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Success: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
 /*
 #pragma mark - Navigation
 
