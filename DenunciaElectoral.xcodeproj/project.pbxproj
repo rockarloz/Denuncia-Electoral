@@ -18,6 +18,7 @@
 		F37461781B0D475D006354CE /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = F37461751B0D475D006354CE /* 2.png */; };
 		F37461791B0D475D006354CE /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = F37461761B0D475D006354CE /* 3.png */; };
 		F374617A1B0D475D006354CE /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = F37461771B0D475D006354CE /* 1.png */; };
+		F374617E1B0D5BF6006354CE /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F374617D1B0D5BF6006354CE /* ListViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,8 @@
 		F37461751B0D475D006354CE /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		F37461761B0D475D006354CE /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
 		F37461771B0D475D006354CE /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		F374617C1B0D5BF6006354CE /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
+		F374617D1B0D5BF6006354CE /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
 		F6AB0CA0AFF01C4213B972C4 /* Pods-DenunciaElectoral.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DenunciaElectoral.release.xcconfig"; path = "Pods/Target Support Files/Pods-DenunciaElectoral/Pods-DenunciaElectoral.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,6 +119,8 @@
 				F37461541B0D4338006354CE /* AppDelegate.m */,
 				F37461561B0D4338006354CE /* ViewController.h */,
 				F37461571B0D4338006354CE /* ViewController.m */,
+				F374617C1B0D5BF6006354CE /* ListViewController.h */,
+				F374617D1B0D5BF6006354CE /* ListViewController.m */,
 				F37461591B0D4338006354CE /* Main.storyboard */,
 				F374615C1B0D4338006354CE /* Images.xcassets */,
 				F374615E1B0D4338006354CE /* LaunchScreen.xib */,
@@ -300,6 +305,7 @@
 			files = (
 				F37461581B0D4338006354CE /* ViewController.m in Sources */,
 				F37461551B0D4338006354CE /* AppDelegate.m in Sources */,
+				F374617E1B0D5BF6006354CE /* ListViewController.m in Sources */,
 				F37461521B0D4338006354CE /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

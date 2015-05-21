@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "ListViewController.h"
 
 @interface ViewController ()
 
@@ -36,6 +37,10 @@
     UIImageView *img1=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, _btn1.frame.size.width, _btn1.frame.size.height)];
     img1.image=[UIImage imageNamed:@"1.png"];
     [_btn1 addSubview:img1];
+    UITapGestureRecognizer *singleFingerTap =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(goToList)];
+    [_btn1 addGestureRecognizer:singleFingerTap];
     
     
     _btn2=[[UIView alloc]initWithFrame:CGRectMake(15+ (self.view.frame.size.width-40)/2, 94, (self.view.frame.size.width-40)/2, 200)];
@@ -54,6 +59,14 @@
     [self.view addSubview:_btn3];
     
 
+}
+
+
+
+-(void)goToList{
+
+    ListViewController *list=[[ListViewController alloc]init];
+    [self.navigationController pushViewController:list animated:NO];
 }
 
 - (void)didReceiveMemoryWarning {
