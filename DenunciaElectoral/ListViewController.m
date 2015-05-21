@@ -31,13 +31,20 @@
     scroll.backgroundColor=[UIColor colorWithRed:252/255.0 green:242/255.0 blue:217/255.0 alpha:1];
     [self.view addSubview:scroll];
     
-    UIImageView *img=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 140, 200)];
+    UIImageView *img=[[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-60, 20, 120, 120)];
     img.image=[UIImage imageNamed:[NSString stringWithFormat:@"%i.png",_type]];
     [scroll addSubview: img];
     
-    table=[[UITableView alloc] initWithFrame:CGRectMake(0, img.frame.size.height+ img.frame.origin.y, self.view.frame.size.width, 400)];
+    UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake(0, img.frame.size.height+ img.frame.origin.y+15, self.view.frame.size.width, 50)];
+    lbl.text=@"Un tal por cual";
+    lbl.textAlignment=NSTextAlignmentCenter;
+    [scroll addSubview: lbl];
+    
+
+    table=[[UITableView alloc] initWithFrame:CGRectMake(0, lbl.frame.size.height+ lbl.frame.origin.y+20, self.view.frame.size.width, 400)];
     table.dataSource=self;
     table.delegate=self;
+    table.scrollEnabled=NO;
     
     [scroll addSubview: table];
     
@@ -91,6 +98,8 @@
             CGRect tableFrame = self.table.frame;
             tableFrame.size.height = heightAux;
             self.table.frame = tableFrame;
+            [scroll setContentSize:CGSizeMake(self.view.frame.size.width, self.table.frame.size.height+self.table.frame.origin.y)];
+
             
         }
         else{

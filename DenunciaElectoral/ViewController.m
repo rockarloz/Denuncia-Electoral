@@ -33,33 +33,55 @@
 }
 
 -(void)createViews{
-    _btn1=[[UIView alloc]initWithFrame:CGRectMake(15, 94, (self.view.frame.size.width-40)/2, 200)];
-    UIImageView *img1=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, _btn1.frame.size.width, _btn1.frame.size.height)];
+    UIButton *info=[[UIButton alloc]initWithFrame:CGRectMake(0, 50, 20, 20)];
+    
+    
+    _btn1=[[UIView alloc]initWithFrame:CGRectMake(15, 94, (self.view.frame.size.width-40)/2, (self.view.frame.size.height-64)/3)];
+  
+    UIImageView *img1=[[UIImageView alloc]initWithFrame:CGRectMake(_btn1.frame.size.width/2-_btn1.frame.size.height/4, 10, _btn1.frame.size.height/2,  _btn1.frame.size.height/2)];
     img1.image=[UIImage imageNamed:@"1.png"];
     [_btn1 addSubview:img1];
     _btn1.tag=1;
+    UILabel *tag1=[[UILabel alloc]initWithFrame:CGRectMake(0, img1.frame.size.height+img1.frame.origin.y, _btn1.frame.size.width, 20)];
+    tag1.text=@"Un ciudadano";
+    //[tag1 sizeToFit];
+    tag1.textAlignment=NSTextAlignmentCenter;
+    [_btn1 addSubview:tag1];
     UITapGestureRecognizer *tapImg1 =
     [[UITapGestureRecognizer alloc] initWithTarget:self
                                             action:@selector(taptap:)];
     [_btn1 addGestureRecognizer:tapImg1];
     
     
-    _btn2=[[UIView alloc]initWithFrame:CGRectMake(15+ (self.view.frame.size.width-40)/2, 94, (self.view.frame.size.width-40)/2, 200)];
+    _btn2=[[UIView alloc]initWithFrame:CGRectMake(15+ (self.view.frame.size.width-40)/2, 94, (self.view.frame.size.width-40)/2, (self.view.frame.size.height-64)/3)];
     
-    UIImageView *img2=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, _btn2.frame.size.width, _btn2.frame.size.height)];
+    UIImageView *img2=[[UIImageView alloc]initWithFrame:CGRectMake(_btn2.frame.size.width/2-_btn2.frame.size.height/4, 10, _btn2.frame.size.height/2,  _btn2.frame.size.height/2)];
     img2.image=[UIImage imageNamed:@"2.png"];
     [_btn2 addSubview:img2];
     _btn2.tag=2;
+    UILabel *tag2=[[UILabel alloc]initWithFrame:CGRectMake(0, img2.frame.size.height+img2.frame.origin.y, _btn2.frame.size.width, 20)];
+    tag2.text=@"Un funcionario";
+    //[tag1 sizeToFit];
+    tag2.textAlignment=NSTextAlignmentCenter;
+    [_btn2 addSubview:tag2];
+
     UITapGestureRecognizer *tapImg2 =
     [[UITapGestureRecognizer alloc] initWithTarget:self
                                             action:@selector(taptap:)];
     [_btn2 addGestureRecognizer:tapImg2];
     
-    _btn3=[[UIView alloc]initWithFrame:CGRectMake(15, 314, (self.view.frame.size.width-40)/2, 200)];
-    UIImageView *img3=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, _btn3.frame.size.width, _btn3.frame.size.height)];
+    _btn3=[[UIView alloc]initWithFrame:CGRectMake((self.view.frame.size.width/4), _btn2.frame.size.height+_btn2.frame.origin.y, (self.view.frame.size.width-40)/2, (self.view.frame.size.height-64)/3)];
+
+    UIImageView *img3=[[UIImageView alloc]initWithFrame:CGRectMake(_btn3.frame.size.width/2-_btn3.frame.size.height/4, 10, _btn3.frame.size.height/2,  _btn3.frame.size.height/2)];
     img3.image=[UIImage imageNamed:@"3.png"];
     [_btn3 addSubview:img3];
     _btn3.tag=3;
+    
+    UILabel *tag3=[[UILabel alloc]initWithFrame:CGRectMake(0, img3.frame.size.height+img3.frame.origin.y, _btn2.frame.size.width, 20)];
+    tag3.text=@"Un candidato";
+    //[tag1 sizeToFit];
+    tag3.textAlignment=NSTextAlignmentCenter;
+    [_btn3 addSubview:tag3];
     UITapGestureRecognizer *tapImg3 =
     [[UITapGestureRecognizer alloc] initWithTarget:self
                                             action:@selector(taptap:)];

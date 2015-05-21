@@ -17,12 +17,17 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    _locationManager = [[CLLocationManager alloc] init];
+    _locationManager.distanceFilter = kCLDistanceFilterNone;
+    _locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    [_locationManager startUpdatingLocation];
+
     // Override point for customization after application launch.
     ViewController *vc=[[ViewController alloc]init];
     UINavigationController *nv=[[UINavigationController alloc]initWithRootViewController:vc];
     self.window.rootViewController=nv;
     [nv.navigationBar setBarTintColor:[UIColor colorWithRed:86/255.0 green:119/255.0 blue:174/255.0 alpha:1]];
-
+    
     return YES;
 }
 

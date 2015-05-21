@@ -10,6 +10,7 @@
 #import <AFHTTPRequestOperationManager.h>
 #include <ifaddrs.h>
 #include <arpa/inet.h>
+#import "AppDelegate.h"
 @interface DetailViewController ()
 @property (nonatomic, retain) NSDictionary *params;
 @end
@@ -18,13 +19,16 @@
 
 {
     UITextView *description;
+    AppDelegate *delegate;
 }
 
 
 @synthesize scroll;
 - (void)viewDidLoad {
+    delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     [self initElements];
-  
+    float latitude = delegate.locationManager.location.coordinate.latitude;
+    float longitude = delegate.locationManager.location.coordinate.longitude;
     // Do any additional setup after loading the view.
 }
 -(void)initElements{
@@ -39,7 +43,7 @@
     [scroll addGestureRecognizer:tap];
 
     
-    UIImageView *img=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 140, 200)];
+    UIImageView *img=[[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-60, 20, 120, 120)];
     img.image=[UIImage imageNamed:[NSString stringWithFormat:@"%i.png",_type]];
     [scroll addSubview: img];
     
@@ -122,6 +126,41 @@
     return address;
     
 }
+/*
+-(void)getImage{
+    NSData *imageToUpload = UIImageJPEGRepresentation(uploadedImgView.image, 1.0);//(uploadedImgView.image);
+    if (imageToUpload)
+    {
+        NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:keyParameter, @"keyName", nil];
+        
+        AFHTTPClient *client= [AFHTTPClient clientWithBaseURL:[NSURL URLWithString:@"http://------"]];
+        
+        NSMutableURLRequest *request = [client multipartFormRequestWithMethod:@"POST" path:@"API name as you have" parameters:parameters constructingBodyWithBlock: ^(id <AFMultipartFormData>formData) {
+            [formData appendPartWithFileData: imageToUpload name:@"image" fileName:@"temp.jpeg" mimeType:@"image/jpeg"];
+        }];
+        
+        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+        
+        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
+         {
+             NSDictionary *jsons = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:nil];
+             //NSLog(@"response: %@",jsons);
+             
+         }
+                                         failure:^(AFHTTPRequestOperation *operation, NSError *error)
+         {
+             if([operation.response statusCode] == 403)
+             {
+                 //NSLog(@"Upload Failed");
+                 return;
+             }
+             //NSLog(@"error: %@", [operation error]);
+             
+         }];
+        
+        [operation start];
+    }
+}*/
 /*
 #pragma mark - Navigation
 

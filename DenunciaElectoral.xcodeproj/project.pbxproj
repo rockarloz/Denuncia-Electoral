@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		075834E21B0D891D0051C875 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 075834E11B0D891D0051C875 /* DetailViewController.m */; };
+		075834E41B0D97E30051C875 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 075834E31B0D97E30051C875 /* CoreLocation.framework */; };
+		075834E81B0DA91C0051C875 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 075834E51B0DA91C0051C875 /* 3.png */; };
+		075834E91B0DA91C0051C875 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 075834E61B0DA91C0051C875 /* 1.png */; };
+		075834EA1B0DA91C0051C875 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 075834E71B0DA91C0051C875 /* 2.png */; };
 		35D694DDDF0318817552ED7C /* libPods-DenunciaElectoral.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CA018491167BA36F36FF43 /* libPods-DenunciaElectoral.a */; };
 		F37461521B0D4338006354CE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F37461511B0D4338006354CE /* main.m */; };
 		F37461551B0D4338006354CE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F37461541B0D4338006354CE /* AppDelegate.m */; };
@@ -16,9 +20,6 @@
 		F374615D1B0D4338006354CE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F374615C1B0D4338006354CE /* Images.xcassets */; };
 		F37461601B0D4338006354CE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F374615E1B0D4338006354CE /* LaunchScreen.xib */; };
 		F374616C1B0D4339006354CE /* DenunciaElectoralTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F374616B1B0D4339006354CE /* DenunciaElectoralTests.m */; };
-		F37461781B0D475D006354CE /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = F37461751B0D475D006354CE /* 2.png */; };
-		F37461791B0D475D006354CE /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = F37461761B0D475D006354CE /* 3.png */; };
-		F374617A1B0D475D006354CE /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = F37461771B0D475D006354CE /* 1.png */; };
 		F374617E1B0D5BF6006354CE /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F374617D1B0D5BF6006354CE /* ListViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +37,10 @@
 		00CA018491167BA36F36FF43 /* libPods-DenunciaElectoral.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DenunciaElectoral.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		075834E01B0D891D0051C875 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		075834E11B0D891D0051C875 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		075834E31B0D97E30051C875 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		075834E51B0DA91C0051C875 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		075834E61B0DA91C0051C875 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		075834E71B0DA91C0051C875 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		45158E356FA4303F96083D2C /* Pods-DenunciaElectoral.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DenunciaElectoral.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DenunciaElectoral/Pods-DenunciaElectoral.debug.xcconfig"; sourceTree = "<group>"; };
 		F374614C1B0D4338006354CE /* DenunciaElectoral.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DenunciaElectoral.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F37461501B0D4338006354CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -50,9 +55,6 @@
 		F37461651B0D4339006354CE /* DenunciaElectoralTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DenunciaElectoralTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F374616A1B0D4339006354CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F374616B1B0D4339006354CE /* DenunciaElectoralTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DenunciaElectoralTests.m; sourceTree = "<group>"; };
-		F37461751B0D475D006354CE /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
-		F37461761B0D475D006354CE /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
-		F37461771B0D475D006354CE /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		F374617C1B0D5BF6006354CE /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		F374617D1B0D5BF6006354CE /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
 		F6AB0CA0AFF01C4213B972C4 /* Pods-DenunciaElectoral.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DenunciaElectoral.release.xcconfig"; path = "Pods/Target Support Files/Pods-DenunciaElectoral/Pods-DenunciaElectoral.release.xcconfig"; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				075834E41B0D97E30051C875 /* CoreLocation.framework in Frameworks */,
 				35D694DDDF0318817552ED7C /* libPods-DenunciaElectoral.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -89,6 +92,7 @@
 		CABB9D940BF2B951D3A761B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				075834E31B0D97E30051C875 /* CoreLocation.framework */,
 				00CA018491167BA36F36FF43 /* libPods-DenunciaElectoral.a */,
 			);
 			name = Frameworks;
@@ -163,9 +167,9 @@
 		F374617B1B0D4774006354CE /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				F37461751B0D475D006354CE /* 2.png */,
-				F37461761B0D475D006354CE /* 3.png */,
-				F37461771B0D475D006354CE /* 1.png */,
+				075834E51B0DA91C0051C875 /* 3.png */,
+				075834E61B0DA91C0051C875 /* 1.png */,
+				075834E71B0DA91C0051C875 /* 2.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -252,12 +256,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F37461781B0D475D006354CE /* 2.png in Resources */,
-				F374617A1B0D475D006354CE /* 1.png in Resources */,
+				075834EA1B0DA91C0051C875 /* 2.png in Resources */,
 				F374615B1B0D4338006354CE /* Main.storyboard in Resources */,
 				F37461601B0D4338006354CE /* LaunchScreen.xib in Resources */,
 				F374615D1B0D4338006354CE /* Images.xcassets in Resources */,
-				F37461791B0D475D006354CE /* 3.png in Resources */,
+				075834E81B0DA91C0051C875 /* 3.png in Resources */,
+				075834E91B0DA91C0051C875 /* 1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
