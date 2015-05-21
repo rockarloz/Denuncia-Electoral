@@ -7,9 +7,11 @@
 //
 
 #import "DetailViewController.h"
-
+#import <AFHTTPRequestOperationManager.h>
+#include <ifaddrs.h>
+#include <arpa/inet.h>
 @interface DetailViewController ()
-
+@property (nonatomic, retain) NSDictionary *params;
 @end
 
 @implementation DetailViewController
@@ -22,6 +24,7 @@
 @synthesize scroll;
 - (void)viewDidLoad {
     [self initElements];
+  
     // Do any additional setup after loading the view.
 }
 -(void)initElements{
@@ -65,6 +68,60 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)collectData {
+  
+   // self.params = @{@"name":@"anonimo", @"last_name":@"anonimo", @"content":description.text, @"latitude":self.genderLabel.text, @"longitude":gradeAux, @"phone":[[NSUUID UUID] UUIDString], @"ip":[self getIPAddress], @"picture": explanationAux, @"is_active":true  };
+    [self sendData];
+}
+
+-(void)sendData{
+  
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setAuthorizationHeaderFieldWithUsername:@"netoxico" password:@"123456"];
+    [manager POST:@"http://justiciacotidiana.mx:8080/justiciacotidiana/api/v1/testimonios" parameters:self.params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"¡Gracias!" message:@"Gracias por enviar tu testimonio" delegate:self cancelButtonTitle:@"Aceptar" otherButtonTitles:@"Compartir", nil];
+        [alert setTag:1];
+        [alert show];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        
+    }];
+
+
+}
+- (NSString *)getIPAddress {
+    
+    NSString *address = @"error";
+    struct ifaddrs *interfaces = NULL;
+    struct ifaddrs *temp_addr = NULL;
+    int success = 0;
+    // retrieve the current interfaces - returns 0 on success
+    success = getifaddrs(&interfaces);
+    if (success == 0) {
+        // Loop through linked list of interfaces
+        temp_addr = interfaces;
+        while(temp_addr != NULL) {
+            if(temp_addr->ifa_addr->sa_family == AF_INET) {
+                // Check if interface is en0 which is the wifi connection on the iPhone
+                if([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"]) {
+                    // Get NSString from C String
+                    address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)];
+                    
+                }
+                
+            }
+            
+            temp_addr = temp_addr->ifa_next;
+        }
+    }
+    // Free memory
+    freeifaddrs(interfaces);
+    return address;
+    
+}
 /*
 #pragma mark - Navigation
 
