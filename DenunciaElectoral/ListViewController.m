@@ -8,6 +8,7 @@
 
 #import "ListViewController.h"
 #import <AFHTTPRequestOperationManager.h>
+#import "DetailViewController.h"
 
 @interface ListViewController ()
 
@@ -155,7 +156,13 @@
 }
 
 
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+   
+    DetailViewController *detail=[[DetailViewController alloc]init];
+    
+    detail.type=_type ;
+    [self.navigationController pushViewController:detail animated:NO];
+}
 
 
 

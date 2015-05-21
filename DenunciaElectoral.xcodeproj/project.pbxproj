@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		075834E21B0D891D0051C875 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 075834E11B0D891D0051C875 /* DetailViewController.m */; };
 		35D694DDDF0318817552ED7C /* libPods-DenunciaElectoral.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CA018491167BA36F36FF43 /* libPods-DenunciaElectoral.a */; };
 		F37461521B0D4338006354CE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F37461511B0D4338006354CE /* main.m */; };
 		F37461551B0D4338006354CE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F37461541B0D4338006354CE /* AppDelegate.m */; };
@@ -33,6 +34,8 @@
 
 /* Begin PBXFileReference section */
 		00CA018491167BA36F36FF43 /* libPods-DenunciaElectoral.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DenunciaElectoral.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		075834E01B0D891D0051C875 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		075834E11B0D891D0051C875 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		45158E356FA4303F96083D2C /* Pods-DenunciaElectoral.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DenunciaElectoral.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DenunciaElectoral/Pods-DenunciaElectoral.debug.xcconfig"; sourceTree = "<group>"; };
 		F374614C1B0D4338006354CE /* DenunciaElectoral.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DenunciaElectoral.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F37461501B0D4338006354CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -121,6 +124,8 @@
 				F37461571B0D4338006354CE /* ViewController.m */,
 				F374617C1B0D5BF6006354CE /* ListViewController.h */,
 				F374617D1B0D5BF6006354CE /* ListViewController.m */,
+				075834E01B0D891D0051C875 /* DetailViewController.h */,
+				075834E11B0D891D0051C875 /* DetailViewController.m */,
 				F37461591B0D4338006354CE /* Main.storyboard */,
 				F374615C1B0D4338006354CE /* Images.xcassets */,
 				F374615E1B0D4338006354CE /* LaunchScreen.xib */,
@@ -303,6 +308,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				075834E21B0D891D0051C875 /* DetailViewController.m in Sources */,
 				F37461581B0D4338006354CE /* ViewController.m in Sources */,
 				F37461551B0D4338006354CE /* AppDelegate.m in Sources */,
 				F374617E1B0D5BF6006354CE /* ListViewController.m in Sources */,
