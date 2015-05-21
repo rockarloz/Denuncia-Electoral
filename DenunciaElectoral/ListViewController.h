@@ -12,4 +12,5 @@
 
 @property (nonatomic,strong)IBOutlet UIScrollView *scroll;
 @property (nonatomic,strong)IBOutlet UITableView *table;
+@property (nonatomic,assign)int type;
 @end

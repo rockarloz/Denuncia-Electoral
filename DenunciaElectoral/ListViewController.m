@@ -31,7 +31,7 @@
     [self.view addSubview:scroll];
     
     UIImageView *img=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 140, 200)];
-    img.image=[UIImage imageNamed:@"1.png"];
+    img.image=[UIImage imageNamed:[NSString stringWithFormat:@"%i.png",_type]];
     [scroll addSubview: img];
     
     table=[[UITableView alloc] initWithFrame:CGRectMake(0, img.frame.size.height+ img.frame.origin.y, self.view.frame.size.width, 400)];
@@ -57,12 +57,39 @@
     [manager GET:url parameters:@{} success:^(AFHTTPRequestOperation *operation, id responseObject){
         
         for (NSDictionary *item in responseObject) {
-            [types addObject:item];
+           
+            if ([item[@"category"] floatValue]==_type) {
+                [types addObject:item];
+            }
+            
         }
         if ([types count]) {
             // Succes Get data :D
             [table reloadData];
+            CGFloat heightAux=0;
+            for (NSDictionary *content in types) {
+                NSString* text=[content objectForKey:@"name"];
+                CGSize constraint = CGSizeMake(300 - (10 * 2), 20000.0f);
+                // remember change this method for ios  8 :D :P
+                
+                CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:14]      constrainedToSize:constraint lineBreakMode: NSLineBreakByWordWrapping];
+                
+                CGFloat height = MAX(size.height, 44.0f);
+                
+                
+                
+                height= height + (10 * 2);
+                heightAux=heightAux+height;
+                
+            }
+           
             
+            
+            //heightAux *= types.count;
+            
+            CGRect tableFrame = self.table.frame;
+            tableFrame.size.height = heightAux;
+            self.table.frame = tableFrame;
             
         }
         else{
@@ -94,6 +121,7 @@
     static NSString *CellIdentifier = @"Cell";
     cell= [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.backgroundColor=[UIColor clearColor];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
@@ -117,9 +145,11 @@
    NSString* text=[[types objectAtIndex:indexPath.row]objectForKey:@"name"];
     CGSize constraint = CGSizeMake(300 - (10 * 2), 20000.0f);
     // remember change this method for ios  8 :D :P
-    CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:14]      constrainedToSize:constraint lineBreakMode: UILineBreakModeWordWrap];
+    CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:14]      constrainedToSize:constraint lineBreakMode: NSLineBreakByWordWrapping];
     
     CGFloat height = MAX(size.height, 44.0f);
+    
+    
     
     return height + (10 * 2);
 }
