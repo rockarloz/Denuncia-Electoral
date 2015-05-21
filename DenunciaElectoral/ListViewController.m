@@ -16,6 +16,7 @@
 @implementation ListViewController
 {
     NSMutableArray *types;
+    UITableViewCell *cell ;
 }
 @synthesize table,scroll;
 - (void)viewDidLoad {
@@ -36,6 +37,7 @@
     table=[[UITableView alloc] initWithFrame:CGRectMake(0, img.frame.size.height+ img.frame.origin.y, self.view.frame.size.width, 400)];
     table.dataSource=self;
     table.delegate=self;
+    
     [scroll addSubview: table];
     
     
@@ -46,6 +48,7 @@
     
     types=[[NSMutableArray alloc]init];
     AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://dc.netoxico.com/api/types/?format=json"]];
+    
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     [manager.requestSerializer setAuthorizationHeaderFieldWithUsername:@"netoxico" password:@"123456"];
     
@@ -84,17 +87,18 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return [types count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
+    cell= [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     if ([types count]>0) {
+        cell.textLabel.numberOfLines=5;
         cell.textLabel.text = [[types objectAtIndex:indexPath.row]objectForKey:@"name"];
 
     }
@@ -104,8 +108,21 @@
 }
 
 
-
-
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // get the text for indexPath
+   // CGSize size = [cell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    //return size.height;
+    //return UITableViewAutomaticDimension;
+   NSString* text=[[types objectAtIndex:indexPath.row]objectForKey:@"name"];
+    CGSize constraint = CGSizeMake(300 - (10 * 2), 20000.0f);
+    // remember change this method for ios  8 :D :P
+    CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:14]      constrainedToSize:constraint lineBreakMode: UILineBreakModeWordWrap];
+    
+    CGFloat height = MAX(size.height, 44.0f);
+    
+    return height + (10 * 2);
+}
 
 
 
