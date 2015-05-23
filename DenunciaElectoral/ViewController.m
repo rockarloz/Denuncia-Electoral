@@ -16,12 +16,12 @@
 @implementation ViewController
 
 - (void)viewDidLoad {
-    self.navigationController.topViewController.navigationItem.title=@"Denuncias a:";
+    self.navigationController.topViewController.navigationItem.title=@"Denuncias Qga:";
     NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                    [UIColor whiteColor],NSForegroundColorAttributeName,
-                                    [UIFont fontWithName:@"OpenSans-Bold" size:21],NSFontAttributeName,nil];
+                                    [UIColor yellowColor],NSForegroundColorAttributeName,
+                                    [UIFont fontWithName:@"BrauerNeue-Regular" size:21],NSFontAttributeName,nil];
     
-    self.navigationController.navigationBar.tintColor=[UIColor yellowColor];
+    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
     
     self.navigationController.navigationBar.titleTextAttributes = textAttributes;
 
@@ -44,7 +44,8 @@
     [_btn1 addSubview:img1];
     _btn1.tag=1;
     UILabel *tag1=[[UILabel alloc]initWithFrame:CGRectMake(0, img1.frame.size.height+img1.frame.origin.y, _btn1.frame.size.width, 20)];
-    tag1.text=@"Un ciudadano";
+    tag1.text=@"Un ciudadano Q";
+    [tag1 setFont:[UIFont fontWithName:@"BrauerNeue-Regular" size:21]];
     //[tag1 sizeToFit];
     tag1.textAlignment=NSTextAlignmentCenter;
     [_btn1 addSubview:tag1];
@@ -117,6 +118,17 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+-(void)viewDidAppear:(BOOL)animated{
+    self.navigationController.navigationBar.backItem.title=@"";
+    self.navigationController.topViewController.navigationItem.title=@"Denuncias a: Qga:";
+    NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    [UIColor yellowColor],NSForegroundColorAttributeName,
+                                    [UIFont fontWithName:@"Akkurat" size:21],NSFontAttributeName,nil];
+    
+    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
+    
+    self.navigationController.navigationBar.titleTextAttributes = textAttributes;
 }
 
 @end

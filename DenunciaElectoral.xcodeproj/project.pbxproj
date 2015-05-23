@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		073A06041B10262500CB8DE6 /* loading_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 073A06031B10262500CB8DE6 /* loading_screen.png */; };
 		075834E21B0D891D0051C875 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 075834E11B0D891D0051C875 /* DetailViewController.m */; };
 		075834E41B0D97E30051C875 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 075834E31B0D97E30051C875 /* CoreLocation.framework */; };
 		075834E81B0DA91C0051C875 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 075834E51B0DA91C0051C875 /* 3.png */; };
@@ -35,6 +36,9 @@
 
 /* Begin PBXFileReference section */
 		00CA018491167BA36F36FF43 /* libPods-DenunciaElectoral.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DenunciaElectoral.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		073A06031B10262500CB8DE6 /* loading_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading_screen.png; sourceTree = "<group>"; };
+		073A06051B102D5E00CB8DE6 /* Akkurat.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Akkurat.ttf; sourceTree = "<group>"; };
+		073A06061B102D5E00CB8DE6 /* BrauerNeue-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BrauerNeue-Regular.ttf"; sourceTree = "<group>"; };
 		075834E01B0D891D0051C875 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		075834E11B0D891D0051C875 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		075834E31B0D97E30051C875 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -131,6 +135,8 @@
 				075834E01B0D891D0051C875 /* DetailViewController.h */,
 				075834E11B0D891D0051C875 /* DetailViewController.m */,
 				F37461591B0D4338006354CE /* Main.storyboard */,
+				073A06051B102D5E00CB8DE6 /* Akkurat.ttf */,
+				073A06061B102D5E00CB8DE6 /* BrauerNeue-Regular.ttf */,
 				F374615C1B0D4338006354CE /* Images.xcassets */,
 				F374615E1B0D4338006354CE /* LaunchScreen.xib */,
 				F374614F1B0D4338006354CE /* Supporting Files */,
@@ -167,6 +173,7 @@
 		F374617B1B0D4774006354CE /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				073A06031B10262500CB8DE6 /* loading_screen.png */,
 				075834E51B0DA91C0051C875 /* 3.png */,
 				075834E61B0DA91C0051C875 /* 1.png */,
 				075834E71B0DA91C0051C875 /* 2.png */,
@@ -260,6 +267,7 @@
 				F374615B1B0D4338006354CE /* Main.storyboard in Resources */,
 				F37461601B0D4338006354CE /* LaunchScreen.xib in Resources */,
 				F374615D1B0D4338006354CE /* Images.xcassets in Resources */,
+				073A06041B10262500CB8DE6 /* loading_screen.png in Resources */,
 				075834E81B0DA91C0051C875 /* 3.png in Resources */,
 				075834E91B0DA91C0051C875 /* 1.png in Resources */,
 			);

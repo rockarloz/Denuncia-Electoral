@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
-
+#define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 @interface AppDelegate ()
 
 @end
@@ -27,6 +27,20 @@
     UINavigationController *nv=[[UINavigationController alloc]initWithRootViewController:vc];
     self.window.rootViewController=nv;
     [nv.navigationBar setBarTintColor:[UIColor colorWithRed:86/255.0 green:119/255.0 blue:174/255.0 alpha:1]];
+    _locationManager = [[CLLocationManager alloc]init]; // initializing locationManager
+    _locationManager.delegate = self; // we set the delegate of locationManager to self.
+    _locationManager.desiredAccuracy = kCLLocationAccuracyBest; // setting the accuracy
+    
+    [_locationManager startUpdatingLocation];
+    
+#ifdef __IPHONE_8_0
+    if(IS_OS_8_OR_LATER) {
+        // Use one or the other, not both. Depending on what you put in info.plist
+        [_locationManager requestWhenInUseAuthorization];
+        [_locationManager requestAlwaysAuthorization];
+    }
+#endif
+    
     
     return YES;
 }

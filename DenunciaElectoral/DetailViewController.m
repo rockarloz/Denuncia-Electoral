@@ -23,19 +23,43 @@
     AppDelegate *delegate;
     UIButton *camera;
     UIButton *send;
+    NSString *latitude;
+    NSString *longitude;
 }
 
 
 @synthesize scroll;
 - (void)viewDidLoad {
+    
+    self.navigationController.topViewController.navigationItem.title=@"El delito fue Qga:";
+    NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    [UIColor yellowColor],NSForegroundColorAttributeName,
+                                    [UIFont fontWithName:@"Akkurat" size:21],NSFontAttributeName,nil];
+    
+    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
+    
+    self.navigationController.navigationBar.titleTextAttributes = textAttributes;
+    
+    self.navigationController.navigationBar.backItem.title=@"";
     delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     [self initElements];
-    float latitude = delegate.locationManager.location.coordinate.latitude;
-    float longitude = delegate.locationManager.location.coordinate.longitude;
+    latitude = [NSString stringWithFormat:@"%f", delegate.locationManager.location.coordinate.latitude];
+    longitude = [NSString stringWithFormat:@"%f",delegate.locationManager.location.coordinate.longitude ];
     // Do any additional setup after loading the view.
 
 }
+-(void)viewDidAppear:(BOOL)animated{
+    self.navigationController.navigationBar.backItem.title=@"";
+    self.navigationController.topViewController.navigationItem.title=@"El delito fue Qga:";
+    NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    [UIColor yellowColor],NSForegroundColorAttributeName,
+                                    [UIFont fontWithName:@"Akkurat" size:21],NSFontAttributeName,nil];
+    
+    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
+    
+    self.navigationController.navigationBar.titleTextAttributes = textAttributes;
 
+}
 -(void)initElements{
     scroll=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,self.view.frame.size.height)];
     scroll.backgroundColor=[UIColor colorWithRed:252/255.0 green:242/255.0 blue:217/255.0 alpha:1];
@@ -55,6 +79,7 @@
     UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake(0, img.frame.size.height+ img.frame.origin.y+15, self.view.frame.size.width, 40)];
     lbl.text=_name;
     lbl.backgroundColor=[UIColor clearColor];
+    lbl.textColor=[UIColor colorWithRed:86/255.0 green:119/255.0 blue:174/255.0 alpha:1];
     lbl.textAlignment=NSTextAlignmentCenter;
     [scroll addSubview: lbl];
     
@@ -63,6 +88,7 @@
     UILabel *lbl2=[[UILabel alloc]initWithFrame:CGRectMake(10, lbl.frame.size.height+lbl.frame.origin.y, self.view.frame.size.width-45, 50)];
     lbl2.text=_data[@"name"];
     lbl2.numberOfLines=4;
+    lbl2.textColor=[UIColor lightGrayColor];
     lbl2.backgroundColor=[UIColor clearColor];
     [lbl2 sizeToFit];
     lbl2.textAlignment=NSTextAlignmentCenter;
@@ -82,6 +108,7 @@
     
     UILabel *lbl3=[[UILabel alloc]initWithFrame:CGRectMake(10, lbl2.frame.size.height+lbl2.frame.origin.y+10, self.view.frame.size.width-20, 30)];
     lbl3.text=@"Explica un poco más";
+    lbl3.textColor=[UIColor colorWithRed:86/255.0 green:119/255.0 blue:174/255.0 alpha:1];
     lbl3.backgroundColor=[UIColor clearColor];
     
     [scroll addSubview: lbl3];
@@ -111,8 +138,9 @@
                action:@selector(send:)
      forControlEvents:UIControlEventTouchUpInside];
     [send setTitle:@"Enviar" forState:UIControlStateNormal];
-    
-    send.frame = CGRectMake(self.view.frame.size.width-60, description.frame.size.height+description.frame.origin.y, 50, 30);
+   
+    send.titleLabel.textColor=[UIColor colorWithRed:86/255.0 green:119/255.0 blue:174/255.0 alpha:1];
+    send.frame = CGRectMake(self.view.frame.size.width-70, description.frame.size.height+description.frame.origin.y, 50, 30);
     [scroll addSubview:send];
     
     
@@ -134,30 +162,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)collectData {
-  
-   // self.params = @{@"name":@"anonimo", @"last_name":@"anonimo", @"content":description.text, @"latitude":self.genderLabel.text, @"longitude":gradeAux, @"phone":[[NSUUID UUID] UUIDString], @"ip":[self getIPAddress], @"picture": explanationAux, @"is_active":true  };
-    [self sendData];
-}
-
--(void)sendData{
-  
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setAuthorizationHeaderFieldWithUsername:@"netoxico" password:@"123456"];
-    [manager POST:@"http://justiciacotidiana.mx:8080/justiciacotidiana/api/v1/testimonios" parameters:self.params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"¡Gracias!" message:@"Gracias por enviar tu testimonio" delegate:self cancelButtonTitle:@"Aceptar" otherButtonTitles:@"Compartir", nil];
-        [alert setTag:1];
-        [alert show];
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        
-    }];
 
 
-}
 - (NSString *)getIPAddress {
     
     NSString *address = @"error";
@@ -194,7 +200,7 @@
     UIImage *image = _preview.image;//[info valueForKey:UIImagePickerControllerOriginalImage];
     NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    self.params = @{@"name":@"anonimo", @"last_name":@"anonimo", @"content":description.text, @"latitude":@10.343, @"longitude":@-34.324, @"ip":[self getIPAddress], @"is_active":@true ,@"uuid":[[NSUUID UUID] UUIDString],@"complaint_type": @7,@"picture":imageData};
+    self.params = @{@"name":@"anonimo", @"last_name":@"anonimo", @"content":description.text, @"latitude":latitude, @"longitude":longitude, @"ip":[self getIPAddress], @"is_active":@true ,@"uuid":[[NSUUID UUID] UUIDString],@"complaint_type": @7,@"picture":imageData};
     
     
     [manager.requestSerializer setAuthorizationHeaderFieldWithUsername:@"netoxico" password:@"123456"];
@@ -207,8 +213,13 @@
     }
         success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Success: %@", responseObject);
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Mensaje" message:@"Gracias por mandar tu denuncia" delegate:self cancelButtonTitle:@"Aceptar" otherButtonTitles:nil, nil];
+            [alert show];
+            [self.navigationController popViewControllerAnimated:NO];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Mensaje" message:@"Ocurrio un error intentalo de nuevo" delegate:self cancelButtonTitle:@"Aceptar" otherButtonTitles:nil, nil];
+        [alert show];
     }];
 }
 /*
@@ -234,6 +245,9 @@
     textView.frame = newFrame;
     camera.frame = CGRectMake(10, textView.frame.size.height+textView.frame.origin.y, 50, 30);
     _preview.frame = CGRectMake(50, textView.frame.size.height+textView.frame.origin.y, 50, 30);
+    send.frame = CGRectMake(self.view.frame.size.width-70, textView.frame.size.height+textView.frame.origin.y, 50, 30);
+    
+    [scroll setContentSize:CGSizeMake(self.view.frame.size.width, _preview.frame.size.height+_preview.frame.origin.y+20)];
 }
 
 - (IBAction)takePhoto:(UIButton *)sender {

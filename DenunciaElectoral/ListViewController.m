@@ -24,9 +24,22 @@
     [super viewDidLoad];
     [self initElements];
     [self getData];
+    self.navigationController.navigationBar.backItem.title=@"";
     // Do any additional setup after loading the view.
 }
+-(void)viewDidAppear:(BOOL)animated{
+    self.navigationController.navigationBar.backItem.title=@"";
+    self.navigationController.topViewController.navigationItem.title=@"El delito fue Qga:";
+    NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    [UIColor yellowColor],NSForegroundColorAttributeName,
+                                    [UIFont fontWithName:@"Akkurat" size:21],NSFontAttributeName,nil];
+    
+    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
+    
+    self.navigationController.navigationBar.titleTextAttributes = textAttributes;
+}
 -(void)initElements{
+   
     scroll=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,self.view.frame.size.height)];
     scroll.backgroundColor=[UIColor colorWithRed:252/255.0 green:242/255.0 blue:217/255.0 alpha:1];
     [self.view addSubview:scroll];
@@ -37,7 +50,8 @@
     
     UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake(0, img.frame.size.height+ img.frame.origin.y+15, self.view.frame.size.width, 40)];
     lbl.text=_name;
-    lbl.backgroundColor=[UIColor greenColor];
+    lbl.textColor=[UIColor colorWithRed:86/255.0 green:119/255.0 blue:174/255.0 alpha:1];
+    lbl.backgroundColor=[UIColor clearColor];
     lbl.textAlignment=NSTextAlignmentCenter;
     [scroll addSubview: lbl];
     
