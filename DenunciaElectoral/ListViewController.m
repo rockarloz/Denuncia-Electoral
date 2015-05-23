@@ -35,11 +35,13 @@
     img.image=[UIImage imageNamed:[NSString stringWithFormat:@"%i.png",_type]];
     [scroll addSubview: img];
     
-    UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake(0, img.frame.size.height+ img.frame.origin.y+15, self.view.frame.size.width, 50)];
-    lbl.text=@"Un tal por cual";
+    UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake(0, img.frame.size.height+ img.frame.origin.y+15, self.view.frame.size.width, 40)];
+    lbl.text=_name;
+    lbl.backgroundColor=[UIColor greenColor];
     lbl.textAlignment=NSTextAlignmentCenter;
     [scroll addSubview: lbl];
     
+  
 
     table=[[UITableView alloc] initWithFrame:CGRectMake(0, lbl.frame.size.height+ lbl.frame.origin.y+20, self.view.frame.size.width, 400)];
     table.dataSource=self;
@@ -66,7 +68,7 @@
         
         for (NSDictionary *item in responseObject) {
            
-            if ([item[@"category"] floatValue]==_type) {
+            if ([item[@"category"][@"id"] floatValue]==_type) {
                 [types addObject:item];
             }
             
@@ -170,6 +172,8 @@
     DetailViewController *detail=[[DetailViewController alloc]init];
     
     detail.type=_type ;
+    detail.name=_name;
+    detail.data=[types objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:detail animated:NO];
 }
 

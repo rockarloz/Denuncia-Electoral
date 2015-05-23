@@ -31,8 +31,9 @@
     float latitude = delegate.locationManager.location.coordinate.latitude;
     float longitude = delegate.locationManager.location.coordinate.longitude;
     // Do any additional setup after loading the view.
-    [self getImage];
+  //  [self getImage];
 }
+
 -(void)initElements{
     scroll=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,self.view.frame.size.height)];
     scroll.backgroundColor=[UIColor colorWithRed:252/255.0 green:242/255.0 blue:217/255.0 alpha:1];
@@ -49,12 +50,43 @@
     img.image=[UIImage imageNamed:[NSString stringWithFormat:@"%i.png",_type]];
     [scroll addSubview: img];
     
-    UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake(10, img.frame.size.height+img.frame.origin.y, self.view.frame.size.width-20, 50)];
-    lbl.text=@"Explica un poco más";
-    [lbl sizeToFit];
+    UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake(0, img.frame.size.height+ img.frame.origin.y+15, self.view.frame.size.width, 40)];
+    lbl.text=_name;
+    lbl.backgroundColor=[UIColor greenColor];
+    lbl.textAlignment=NSTextAlignmentCenter;
     [scroll addSubview: lbl];
     
-    description=[[UITextView alloc]initWithFrame:CGRectMake(10, lbl.frame.size.height+lbl.frame.origin.y, self.view.frame.size.width-20, 200)];
+   
+    
+    UILabel *lbl2=[[UILabel alloc]initWithFrame:CGRectMake(10, lbl.frame.size.height+lbl.frame.origin.y, self.view.frame.size.width-45, 50)];
+    lbl2.text=_data[@"name"];
+    lbl2.numberOfLines=4;
+    lbl2.backgroundColor=[UIColor blueColor];
+    [lbl2 sizeToFit];
+    lbl2.textAlignment=NSTextAlignmentCenter;
+    
+
+        lbl2.frame=CGRectMake((self.view.frame.size.width/2)-(lbl2.frame.size.width/2)-10, lbl.frame.size.height+lbl.frame.origin.y, lbl2.frame.size.width, lbl2.frame.size.height);
+    [scroll addSubview: lbl2];
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    [button addTarget:self
+               action:@selector(moreInfo:)
+     forControlEvents:UIControlEventTouchUpInside];
+    [button setTitle:@"" forState:UIControlStateNormal];
+    button.frame = CGRectMake(lbl2.frame.size.width+2+lbl2.frame.origin.x, lbl.frame.size.height+lbl.frame.origin.y+(lbl2.frame.size.height/2 -15), 30, 30);
+    [scroll addSubview:button];
+    
+    
+    UILabel *lbl3=[[UILabel alloc]initWithFrame:CGRectMake(10, lbl2.frame.size.height+lbl2.frame.origin.y+10, self.view.frame.size.width-20, 30)];
+    lbl3.text=@"Explica un poco más";
+    lbl3.backgroundColor=[UIColor redColor];
+    
+    [scroll addSubview: lbl3];
+    
+    
+    
+    description=[[UITextView alloc]initWithFrame:CGRectMake(10, lbl3.frame.size.height+lbl3.frame.origin.y, self.view.frame.size.width-20, 200)];
     [scroll addSubview: description];
     
     
@@ -134,7 +166,7 @@
     UIImage *image = [UIImage imageNamed:@"1.png"];//[info valueForKey:UIImagePickerControllerOriginalImage];
     NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    self.params = @{@"name":@"anonimo", @"last_name":@"anonimo", @"content":@"texto", @"latitude":@10.343, @"longitude":@-34.324, @"phone":@9611510936 , @"ip":[self getIPAddress], @"is_active":@true  };
+    self.params = @{@"name":@"anonimo", @"last_name":@"anonimo", @"content":@"texto", @"latitude":@10.343, @"longitude":@-34.324, @"ip":[self getIPAddress], @"is_active":@true ,@"uuid":[[NSUUID UUID] UUIDString],@"complaint_type": @7 };
     
     
     [manager.requestSerializer setAuthorizationHeaderFieldWithUsername:@"netoxico" password:@"123456"];
@@ -158,5 +190,8 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+-(IBAction)moreInfo:(id)sender{
+    UIAlertView * alert=[[UIAlertView alloc]initWithTitle:@"" message:_data[@"description"] delegate:self cancelButtonTitle:@"Aceptar" otherButtonTitles:nil, nil];
+    [alert show];
+}
 @end

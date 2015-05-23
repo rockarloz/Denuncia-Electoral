@@ -33,10 +33,11 @@
 }
 
 -(void)createViews{
+    
     UIButton *info=[[UIButton alloc]initWithFrame:CGRectMake(0, 50, 20, 20)];
     
     
-    _btn1=[[UIView alloc]initWithFrame:CGRectMake(15, 94, (self.view.frame.size.width-40)/2, (self.view.frame.size.height-64)/3)];
+    _btn1=[[UIView alloc]initWithFrame:CGRectMake((self.view.frame.size.width/4), 94, (self.view.frame.size.width-40)/2, (self.view.frame.size.height-64)/3)];
   
     UIImageView *img1=[[UIImageView alloc]initWithFrame:CGRectMake(_btn1.frame.size.width/2-_btn1.frame.size.height/4, 10, _btn1.frame.size.height/2,  _btn1.frame.size.height/2)];
     img1.image=[UIImage imageNamed:@"1.png"];
@@ -53,7 +54,7 @@
     [_btn1 addGestureRecognizer:tapImg1];
     
     
-    _btn2=[[UIView alloc]initWithFrame:CGRectMake(15+ (self.view.frame.size.width-40)/2, 94, (self.view.frame.size.width-40)/2, (self.view.frame.size.height-64)/3)];
+    _btn2=[[UIView alloc]initWithFrame:CGRectMake((self.view.frame.size.width/4), _btn1.frame.size.height+_btn1.frame.origin.y, (self.view.frame.size.width-40)/2, (self.view.frame.size.height-64)/3)];
     
     UIImageView *img2=[[UIImageView alloc]initWithFrame:CGRectMake(_btn2.frame.size.width/2-_btn2.frame.size.height/4, 10, _btn2.frame.size.height/2,  _btn2.frame.size.height/2)];
     img2.image=[UIImage imageNamed:@"2.png"];
@@ -100,6 +101,13 @@
     ListViewController *list=[[ListViewController alloc]init];
     
     list.type=(int )tappedView.tag ;
+    if ((int )tappedView.tag==1)
+        list.name=@"Un ciudadano";
+    else if ((int )tappedView.tag==2)
+         list.name=@"Un funcionario";
+    else
+         list.name=@"Un candidato";
+    
     [self.navigationController pushViewController:list animated:NO];
     // do something with it
 }

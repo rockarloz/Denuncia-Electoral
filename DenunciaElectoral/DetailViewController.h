@@ -11,4 +11,6 @@
 @interface DetailViewController : ViewController
 @property (nonatomic,strong)IBOutlet UIScrollView *scroll;
 @property (nonatomic,assign)int type;
+@property (nonatomic,strong)NSMutableDictionary *data;
+@property (nonatomic,strong)NSString *name;
 @end
