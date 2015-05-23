@@ -21,6 +21,8 @@
 {
     UITextView *description;
     AppDelegate *delegate;
+    UIButton *camera;
+    UIButton *send;
 }
 
 
@@ -31,7 +33,7 @@
     float latitude = delegate.locationManager.location.coordinate.latitude;
     float longitude = delegate.locationManager.location.coordinate.longitude;
     // Do any additional setup after loading the view.
-  //  [self getImage];
+
 }
 
 -(void)initElements{
@@ -52,7 +54,7 @@
     
     UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake(0, img.frame.size.height+ img.frame.origin.y+15, self.view.frame.size.width, 40)];
     lbl.text=_name;
-    lbl.backgroundColor=[UIColor greenColor];
+    lbl.backgroundColor=[UIColor clearColor];
     lbl.textAlignment=NSTextAlignmentCenter;
     [scroll addSubview: lbl];
     
@@ -61,7 +63,7 @@
     UILabel *lbl2=[[UILabel alloc]initWithFrame:CGRectMake(10, lbl.frame.size.height+lbl.frame.origin.y, self.view.frame.size.width-45, 50)];
     lbl2.text=_data[@"name"];
     lbl2.numberOfLines=4;
-    lbl2.backgroundColor=[UIColor blueColor];
+    lbl2.backgroundColor=[UIColor clearColor];
     [lbl2 sizeToFit];
     lbl2.textAlignment=NSTextAlignmentCenter;
     
@@ -80,7 +82,7 @@
     
     UILabel *lbl3=[[UILabel alloc]initWithFrame:CGRectMake(10, lbl2.frame.size.height+lbl2.frame.origin.y+10, self.view.frame.size.width-20, 30)];
     lbl3.text=@"Explica un poco más";
-    lbl3.backgroundColor=[UIColor redColor];
+    lbl3.backgroundColor=[UIColor clearColor];
     
     [scroll addSubview: lbl3];
     
@@ -91,6 +93,29 @@
     description.scrollEnabled=NO;
     
     [scroll addSubview: description];
+    
+    camera = [UIButton buttonWithType:UIButtonTypeContactAdd];
+    [camera addTarget:self
+               action:@selector(takePhoto:)
+     forControlEvents:UIControlEventTouchUpInside];
+    [camera setTitle:@"" forState:UIControlStateNormal];
+    
+      camera.frame = CGRectMake(10, description.frame.size.height+description.frame.origin.y, 50, 30);
+    [scroll addSubview:camera];
+    
+    _preview=[[UIImageView alloc]initWithFrame:CGRectMake(50, description.frame.size.height+description.frame.origin.y, 50, 50)];
+     [scroll addSubview:_preview];
+    
+    send = [UIButton buttonWithType:UIButtonTypeCustom];
+    [send addTarget:self
+               action:@selector(send:)
+     forControlEvents:UIControlEventTouchUpInside];
+    [send setTitle:@"Enviar" forState:UIControlStateNormal];
+    
+    send.frame = CGRectMake(self.view.frame.size.width-60, description.frame.size.height+description.frame.origin.y, 50, 30);
+    [scroll addSubview:send];
+    
+    
     
     
     
@@ -164,19 +189,21 @@
     
 }
 
--(void)getImage{
+-(IBAction)send:(id)sender{
     
-    UIImage *image = [UIImage imageNamed:@"1.png"];//[info valueForKey:UIImagePickerControllerOriginalImage];
+    UIImage *image = _preview.image;//[info valueForKey:UIImagePickerControllerOriginalImage];
     NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    self.params = @{@"name":@"anonimo", @"last_name":@"anonimo", @"content":@"texto", @"latitude":@10.343, @"longitude":@-34.324, @"ip":[self getIPAddress], @"is_active":@true ,@"uuid":[[NSUUID UUID] UUIDString],@"complaint_type": @7 };
+    self.params = @{@"name":@"anonimo", @"last_name":@"anonimo", @"content":description.text, @"latitude":@10.343, @"longitude":@-34.324, @"ip":[self getIPAddress], @"is_active":@true ,@"uuid":[[NSUUID UUID] UUIDString],@"complaint_type": @7,@"picture":imageData};
     
     
     [manager.requestSerializer setAuthorizationHeaderFieldWithUsername:@"netoxico" password:@"123456"];
     
     [manager POST:@"http://dc.netoxico.com/api/complaints/" parameters:self.params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         
-        [formData appendPartWithFormData:imageData name:@"image"];
+ 
+        [formData appendPartWithFileData:imageData name:@"picture" fileName:@"prueba.png" mimeType:@"image/jpeg"];
+        
     }
         success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Success: %@", responseObject);
@@ -205,6 +232,43 @@
     CGRect newFrame = textView.frame;
     newFrame.size = CGSizeMake(fmaxf(newSize.width, fixedWidth), newSize.height);
     textView.frame = newFrame;
+    camera.frame = CGRectMake(10, textView.frame.size.height+textView.frame.origin.y, 50, 30);
+    _preview.frame = CGRectMake(50, textView.frame.size.height+textView.frame.origin.y, 50, 30);
 }
 
+- (IBAction)takePhoto:(UIButton *)sender {
+    
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+}
+- (IBAction)selectPhoto:(UIButton *)sender {
+    
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+    
+    
+}
+#pragma camera delegates methods
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    self.preview.image = chosenImage;
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
 @end
