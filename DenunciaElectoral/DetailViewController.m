@@ -87,6 +87,9 @@
     
     
     description=[[UITextView alloc]initWithFrame:CGRectMake(10, lbl3.frame.size.height+lbl3.frame.origin.y, self.view.frame.size.width-20, 200)];
+    description.delegate=self;
+    description.scrollEnabled=NO;
+    
     [scroll addSubview: description];
     
     
@@ -194,4 +197,14 @@
     UIAlertView * alert=[[UIAlertView alloc]initWithTitle:@"" message:_data[@"description"] delegate:self cancelButtonTitle:@"Aceptar" otherButtonTitles:nil, nil];
     [alert show];
 }
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+    CGFloat fixedWidth = textView.frame.size.width;
+    CGSize newSize = [textView sizeThatFits:CGSizeMake(fixedWidth, MAXFLOAT)];
+    CGRect newFrame = textView.frame;
+    newFrame.size = CGSizeMake(fmaxf(newSize.width, fixedWidth), newSize.height);
+    textView.frame = newFrame;
+}
+
 @end

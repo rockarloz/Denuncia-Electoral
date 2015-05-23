@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 
-@interface DetailViewController : ViewController
+@interface DetailViewController : ViewController <UITextViewDelegate>
 @property (nonatomic,strong)IBOutlet UIScrollView *scroll;
 @property (nonatomic,assign)int type;
 @property (nonatomic,strong)NSMutableDictionary *data;
